@@ -2,7 +2,7 @@
   "name": "vue",
   "version": "1.0.0",
   "description": "基于Vue2.0开发的外卖app",
-  "author": "unclekieth",
+  "author": "unclekieth <keithchou95@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
