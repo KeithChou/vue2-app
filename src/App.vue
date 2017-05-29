@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <headers></headers>
+    <headers :seller=seller></headers>
     <div class="nav">
       <router-link to="/good">商品</router-link>
       <router-link to="/rating">评价</router-link>
@@ -14,19 +14,26 @@
   import headers from './components/header/header';
 
   export default {
+    created () {
+      this.$http.get('./api/seller')
+      .then((res) => {
+        let response = res.body;
+        if (response.errno === 0) {
+          this.seller = response.data;
+        }
+      })
+    },
     components: {
       headers: headers
+    },
+    data () {
+      return {
+        seller: {}
+      }
     }
   }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="sass">
+  @import "./common/sass/page";
 </style>
