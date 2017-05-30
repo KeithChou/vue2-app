@@ -35,5 +35,5 @@
 </script>
 
 <style lang="sass">
-  @import "./common/sass/page";
+  @import "./common/sass/index";
 </style>
