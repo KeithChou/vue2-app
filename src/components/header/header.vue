@@ -13,8 +13,14 @@
 				<span class="deliveryTime">{{seller.deliveryTime}}分钟送达</span>
 			</div>
 			<div class="header-activity" v-if="seller.supports">
-				<icon :iconType="seller.supports[0].type" iconStyle="1" class="header-icon"></icon>
-				<span class="activity">{{seller.supports[0].description}}</span>
+				<div class="header-activity-con">
+					<icon :iconType="seller.supports[0].type" iconStyle="1" class="header-icon"></icon>
+					<span class="text">{{seller.supports[0].description}}</span>
+				</div>
+				<div class="header-activity-num">
+					<span class="num">{{seller.supports.length}}个</span>
+					<span class="icon-keyboard_arrow_right"></span>
+				</div>
 			</div>
 		</div>
 		<div class="header-bg">
@@ -23,7 +29,7 @@
 		<div class="header-bulletin">
 			<span class="header-bulletin-icon"></span>
 			<span class="header-bulletin-text">{{seller.bulletin}}</span>
-			<span class="header-bulletin-arrow">></span>
+			<span class="icon-keyboard_arrow_right"></span>
 		</div>
 	</div>
 </template>
@@ -49,6 +55,7 @@
 	@import "../../common/sass/mixin";
 	.header
 		flex: 1 0 auto
+		min-width: 0
 		&-bg
 			position: absolute
 			z-index: -1
@@ -69,6 +76,7 @@
 			flex-flow: row nowrap
 			padding: 24px 12px 18px 24px
 			background-color: rgba(7, 17, 27, .5)
+			min-width: 0
 		&-image
 			flex: 0 0 64px
 			width: 64px
@@ -107,52 +115,73 @@
 			color: rgb(255, 255, 255)
 			font-weight: 200
 			line-height: 12px
-			margin-bottom: 10px
 		&-activity
-			font-size: 0
-			.activity
-				font-size: 10px
-				color: rgb(255, 255, 255)
-				vertical-align: middle
+			display: flex
+			align-items: center
+			&-con
+				font-size: 0
+				flex: 1 1 auto
+				margin-top: 3px
+				.text
+					font-size: 10px
+					color: rgb(255, 255, 255)
+					vertical-align: middle
+					font-weight: 200
+					line-height: 12px
+					margin-left: 4px
+			&-num
+				display: flex
+				align-items: center
+				justify-content: center
+				padding: 7px 8px
+				text-align: center
+				font-size: 0
+				color: #fff
 				font-weight: 200
 				line-height: 12px
-				margin-left: 4px
+				border-radius: 14px
+				background-color: rgba(0, 0, 0, .2);
+				.num
+					font-size: 10px
+					margin-right: 2px
+				.icon-keyboard_arrow_right
+					font-size: 10px
+
 		&-bulletin
+			display: flex
+			align-items: center
 			position: absolute
 			bottom: 0
 			left: 0
 			right: 0
-			width: 100%
 			height: 28px
+			padding: 0 12px
+			color: #fff
 			line-height: 28px
 			white-space: nowrap
-			padding: 0 12px
+			font-size: 0
 			box-sizing: border-box
 			background-color: rgba(0, 0, 0, .2)
 			&-icon
-				display: inline-block
+				flex: 0 0 22px
 				width: 22px
 				height: 12px
 				background-size: 22px 12px
 				margin-right: 4px
-				vertical-align: middle
 				@include bg-image('./bulletin');
 				@media screen and (device-pixel-ratio: 3)
 					width: 33px
 					height: 18px
 					background-size: 33px
 			&-text
-				display: inline-block
-				vertical-align: middle
-				width: 85%
+				flex: 1 1 auto
 				font-size: 10px
 				color: rgb(255, 255, 255)
 				font-weight: 200
+				margin-right: 8px
 				text-overflow: ellipsis
 				overflow: hidden
 				white-space: nowrap
-			&-arrow
+			.icon-keyboard_arrow_right
 				font-size: 10px
-				color: rgb(255, 255, 255)
-				font-weight: 200
 </style>
