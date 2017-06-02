@@ -26,11 +26,35 @@
 		<div class="header-bg">
 			<img :src="seller.avatar" :alt="seller.name" class="header-bg-img">
 		</div>
-		<div class="header-bulletin">
+		<div class="header-bulletin" @click="bulletinShow=!bulletinShow">
 			<span class="header-bulletin-icon"></span>
 			<span class="header-bulletin-text">{{seller.bulletin}}</span>
 			<span class="icon-keyboard_arrow_right"></span>
 		</div>
+		<transition name="adsMove">
+			<div class="bulletin-wrapper" v-if="bulletinShow" @click="bulletinShow=false">
+				<div class="bulletin-main">
+					<div class="bulletin-main-title">
+						<h1 class="title">{{seller.name}}</h1>
+					</div>
+					<div class="bulletin-main-star"></div>
+					<div class="bulletin-main-message" v-if="seller.supports.length">
+						<div class="line"></div>
+						<ul class="bulletin-main-message-ul">
+							<li v-for="item in seller.supports" class="bulletin-main-message-list">
+								<icon :iconType=item.type iconStyle='2'></icon>
+								<span class="text">{{item.description}}</span>
+							</li>
+						</ul>
+					</div>
+					<div class="bulletin-main-ads" v-if="seller.bulletin">
+						<div class="line"></div>
+						<div class="text">{{seller.bulletin}}</div>
+					</div>
+				</div>
+				<div class="bulletin-footer"></div>
+			</div>
+		</transition>
 	</div>
 </template>
 
@@ -47,6 +71,11 @@
 		},
 		components: {
 			icon: icon
+		},
+		data () {
+			return {
+				bulletinShow: false
+			}
 		}
 	}
 </script>
@@ -184,4 +213,37 @@
 				white-space: nowrap
 			.icon-keyboard_arrow_right
 				font-size: 10px
+	.bulletin
+		&-wrapper
+			display: flex
+			flex-flow: column nowrap
+			position: fixed
+			left: 0
+			right: 0
+			top: 0
+			bottom: 0
+			background-color: rgba(7, 17, 27, .8)
+			padding: 64px 36px 32px
+		&-main
+			flex: 1 0 auto;
+			width: 100%
+			&-title
+				.title
+					font-size: 16px
+					font-weight: 700
+					color: rgb(255, 255, 255)
+					line-height: 16px
+					text-align: center
+	.adsMove
+		&-enter
+			transform: translateX(100%)
+			opacity: 0
+			&-active
+				transition: all .5s linear
+		&-leave
+			&-active
+				opacity: 0
+				transition: all .5s linear
+				transform: translateX(100%)
+
 </style>

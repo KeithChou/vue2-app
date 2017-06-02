@@ -42,8 +42,8 @@
 			@include bg-image('./decrease_1')
 		&_2
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./decrease_2')
 		&_3
 			width: 12px
@@ -52,8 +52,8 @@
 			@include bg-image('./decrease_3')
 		&_4
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./decrease_4');
 	.discount
 		&_1
@@ -63,8 +63,8 @@
 			@include bg-image('./discount_1')
 		&_2
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./discount_2')
 		&_3
 			width: 12px
@@ -73,8 +73,8 @@
 			@include bg-image('./discount_3')
 		&_4
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./discount_4');
 	.guarantee
 		&_1
@@ -84,8 +84,8 @@
 			@include bg-image('./guarantee_1')
 		&_2
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./guarantee_2')
 		&_3
 			width: 12px
@@ -94,8 +94,8 @@
 			@include bg-image('./guarantee_3')
 		&_4
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./guarantee_4');
 	.invoice
 		&_1
@@ -105,8 +105,8 @@
 			@include bg-image('./invoice_1')
 		&_2
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./invoice_2')
 		&_3
 			width: 12px
@@ -115,8 +115,8 @@
 			@include bg-image('./invoice_3')
 		&_4
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./invoice_4');
 	.special
 		&_1
@@ -126,8 +126,8 @@
 			@include bg-image('./special_1')
 		&_2
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./special_2')
 		&_3
 			width: 12px
@@ -136,7 +136,7 @@
 			@include bg-image('./special_3')
 		&_4
 			width: 16px
-			height: 24px
-			background-size: 16px 24px
+			height: 16px
+			background-size: 16px 16px
 			@include bg-image('./special_4');
 </style>
