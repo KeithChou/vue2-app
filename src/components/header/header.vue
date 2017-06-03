@@ -37,7 +37,7 @@
 					<div class="bulletin-main-title">
 						<h1 class="title">{{seller.name}}</h1>
 					</div>
-					<div class="bulletin-main-star"></div>
+					<star :size=48 :score=seller.score></star>
 					<div class="bulletin-main-message" v-if="seller.supports.length">
 						<div class="line"></div>
 						<ul class="bulletin-main-message-ul">
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+	import star from '../star/star';
 	import icon from '../icon/icon';
 	export default {
 		props: {
@@ -70,7 +71,8 @@
 			}
 		},
 		components: {
-			icon: icon
+			icon: icon,
+			star: star
 		},
 		data () {
 			return {
