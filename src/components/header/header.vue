@@ -26,41 +26,54 @@
 		<div class="header-bg">
 			<img :src="seller.avatar" :alt="seller.name" class="header-bg-img">
 		</div>
-		<div class="header-bulletin" @click="bulletinShow=!bulletinShow">
+		<div class="header-bulletin" @click="bulletinCome">
 			<span class="header-bulletin-icon"></span>
 			<span class="header-bulletin-text">{{seller.bulletin}}</span>
 			<span class="icon-keyboard_arrow_right"></span>
 		</div>
 		<transition name="adsMove">
-			<div class="bulletin-wrapper" v-if="bulletinShow" @click="bulletinShow=false">
-				<div class="bulletin-main">
-					<div class="bulletin-main-title">
-						<h1 class="title">{{seller.name}}</h1>
+			<div class="bulletin-wrapper" v-if="bulletinShow" @click="bulletinShow=false" ref="bulletinWrapper">
+				<div class='bulletin-container'>
+					<div class="bulletin-main">
+						<div class="bulletin-main-title">
+							<h1 class="title">{{seller.name}}</h1>
+						</div>
+						<div class="bulletin-main-star">
+							<star :size=48 :score=seller.score></star>
+						</div>
+						<div class="bulletin-main-line">
+							<split title="优惠信息"></split>
+						</div>
+						<div class="bulletin-main-message" v-if="seller.supports.length">
+							<ul class="bulletin-main-message-ul">
+								<li v-for="item in seller.supports" class="bulletin-main-message-list">
+									<icon :iconType=item.type iconStyle='2'></icon>
+									<span class="text">{{item.description}}</span>
+								</li>
+							</ul>
+						</div>
+						<div class="bulletin-main-line">
+							<split title="商家公告"></split>
+						</div>
+						<div class="bulletin-main-ads" v-if="seller.bulletin">
+							<div class="text">{{seller.bulletin}}</div>
+						</div>
 					</div>
-					<star :size=48 :score=seller.score></star>
-					<div class="bulletin-main-message" v-if="seller.supports.length">
-						<div class="line"></div>
-						<ul class="bulletin-main-message-ul">
-							<li v-for="item in seller.supports" class="bulletin-main-message-list">
-								<icon :iconType=item.type iconStyle='2'></icon>
-								<span class="text">{{item.description}}</span>
-							</li>
-						</ul>
-					</div>
-					<div class="bulletin-main-ads" v-if="seller.bulletin">
-						<div class="line"></div>
-						<div class="text">{{seller.bulletin}}</div>
+					<div class="bulletin-footer">
+						<span class="icon-close"></span>
 					</div>
 				</div>
-				<div class="bulletin-footer"></div>
 			</div>
 		</transition>
 	</div>
 </template>
 
 <script>
+	import BScroll from 'better-scroll';
 	import star from '../star/star';
 	import icon from '../icon/icon';
+	import split from '../split/split';
+
 	export default {
 		props: {
 			seller: {
@@ -72,11 +85,24 @@
 		},
 		components: {
 			icon: icon,
-			star: star
+			star: star,
+			split: split
 		},
 		data () {
 			return {
 				bulletinShow: false
+			}
+		},
+		methods: {
+			bulletinCome () {
+				let that = this;
+				this.bulletinShow = !this.bulletinShow;
+				this.$nextTick(function () {
+					let scroll = new BScroll(that.$refs.bulletinWrapper, {
+						preventDefault: false
+					});
+					console.log(scroll);
+				})
 			}
 		}
 	}
@@ -226,8 +252,10 @@
 			bottom: 0
 			background-color: rgba(7, 17, 27, .8)
 			padding: 64px 36px 32px
+		&-container
+			padding-bottom: 100px
 		&-main
-			flex: 1 0 auto;
+			flex: 1 0 auto
 			width: 100%
 			&-title
 				.title
@@ -236,6 +264,39 @@
 					color: rgb(255, 255, 255)
 					line-height: 16px
 					text-align: center
+					margin-bottom: 16px
+			&-star
+				text-align: center
+				margin-bottom: 28px
+			&-line
+				margin-bottom: 24px
+			&-message
+				margin: 0 12px
+				&-list
+					margin-bottom: 12px
+					&:last-child
+						margin-bottom: 0
+					.text
+						font-size: 12px
+						font-weight: 200
+						color: rgb(255, 255, 255)
+						line-height: 12px
+				&-ul
+					margin-bottom: 28px
+			&-ads
+				margin: 0 12px
+				.text
+					font-size: 12px
+					font-weight: 200
+					color: rgb(255, 255, 255)
+					line-height: 24px
+		&-footer
+			width: 100%
+			text-align: center
+			margin-top: 50px
+			.icon-close
+				font-size: 32px
+				color: rgba(255, 255, 255, .5)
 	.adsMove
 		&-enter
 			transform: translateX(100%)
